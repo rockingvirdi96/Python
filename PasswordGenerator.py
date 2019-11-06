@@ -1,21 +1,23 @@
 import random
 import re
+import string
 from string import punctuation
 
 
-AlphabetList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
-                     'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+AlphabetList = list(string.ascii_lowercase)
+AlphabetListUpper = list(string.ascii_uppercase)
 listDigits = [x for x in range(0, 10)]
+specialChars = list(set(punctuation))
 CipherCodeDict = {AlphabetList[x]: AlphabetList[x+3]
                   for x in range(0, len(AlphabetList)-3)}
 extra = {'x': 'a', 'y': 'b', 'z': 'c'}
-specialChars = list(set(punctuation))
-# print(specialChars)
 CipherCodeDict.update(extra)
+
 EncryptedPasswords = []
 PassWordStorage = {}
 RealPasswords = []
 GeneratedPasswords = []
+
 restart = True
 
 
@@ -52,16 +54,20 @@ def checkPassword(password):
 def GeneratedPassword():
     generatedPassword = ""
     for x in range(0, random.randint(8, 15)):
-        choice = random.randint(1, 4)
+        choice = random.randint(1, 5)
         if (choice == 1):
             generatedPassword += str(
-                listDigits[random.randint(0, len(listDigits))])
+                listDigits[random.randint(0, len(listDigits)-1)])
         if (choice == 2):
             generatedPassword += str(
-                specialChars[random.randint(0, len(specialChars))])
+                specialChars[random.randint(0, len(specialChars)-1)])
         if (choice == 3):
             generatedPassword += str(
-                AlphabetList[random.randint(0, len(AlphabetList))])
+                AlphabetList[random.randint(0, len(AlphabetList)-1)])
+        if (choice == 4):
+            generatedPassword += str(
+                AlphabetListUpper[random.randint(0, len(AlphabetListUpper)-1)])
+    print("Password Generated")
     GeneratedPasswords.append(generatedPassword)
 
 
@@ -113,6 +119,7 @@ while(restart):
         print("Real Password: " + str(RealPasswords))
         print("Encrypted Password: " + str(EncryptedPasswords))
         print("Dictionary: " + str(PassWordStorage))
+        print("Generated Passwords: " + str(GeneratedPasswords))
     if (choice == 5):
         restart = False
 
