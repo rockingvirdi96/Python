@@ -22,7 +22,7 @@ restart = True
 
 
 def checkPassword(password):
-    SpecialChars = re.compile('[@_!#$%^&*()<>"?/"\"|}{~:]')
+    SpecialChars = re.compile('[@_!#$%^&*.()<>"?/"\"|}{~:]')
     numbers = re.compile('\\d')
     alphabetsUpperCase = re.compile('[A-Z]')
     alphabetsLowerCase = re.compile('[a-z]')
@@ -32,7 +32,7 @@ def checkPassword(password):
     else:
         if (SpecialChars.search(password) is None):
             print(
-                "Password Not Strong(Special Char Missing[@_!#$%^&*''() <>?/|}{~:]")
+                "Password Not Strong(Special Char Missing[@_!#$%^&*''().<>?/|}{~:]")
             return False
         else:
             if (alphabetsUpperCase.search(password) is None):
@@ -53,7 +53,7 @@ def checkPassword(password):
 
 def GeneratedPassword():
     generatedPassword = ""
-    for x in range(0, random.randint(8, 15)):
+    for x in range(0, random.randint(10, 15)):
         choice = random.randint(1, 5)
         if (choice == 1):
             generatedPassword += str(
@@ -67,7 +67,7 @@ def GeneratedPassword():
         if (choice == 4):
             generatedPassword += str(
                 AlphabetListUpper[random.randint(0, len(AlphabetListUpper)-1)])
-    print("Password Generated")
+    print("Password Generated: " + generatedPassword)
     GeneratedPasswords.append(generatedPassword)
 
 
@@ -106,9 +106,9 @@ while(restart):
             password = input()
             if (checkPassword(password)):
                 print("Password Accepted")
+
                 trial = False
             else:
-                print("Password Denied")
                 print("Try Again")
     if (choice == 2):
         EncryptPassword(str(RealPasswords[len(RealPasswords)-1]))
