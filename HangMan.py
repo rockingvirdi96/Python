@@ -1,7 +1,7 @@
-import random
+from random import randint
 from collections import OrderedDict
 myListOfWords = ['sonofsatyamurthy', 'avengers', 'prefontaine', 'pandeyji',
-                 'happydon', 'rohanbasha', 'satnamwaheguru', 'eelueelu', 'canada']
+                 'happydon', 'rohanbasha', 'satnamwaheguru', 'eelueelu', 'canada', 'honalulu', 'California', 'balleballe', 'terminator']
 play = True
 
 while(play):
@@ -13,7 +13,7 @@ while(play):
     print("Entre ton choix:", end="")
     choice = int(input())
     if (choice == 1):
-        randomQuiz = random.randint(0, 8)
+        randomQuiz = randint(0, len(myListOfWords)-1)
         wordOfGame = myListOfWords[randomQuiz]
         xtra = list(OrderedDict.fromkeys(wordOfGame))
         i = 0
@@ -50,7 +50,13 @@ while(play):
                 print("\nCooool now the next one..")
             else:
                 i = i+1
-                print("Sorry "+guessletter+" is not present in the word.")
+                print("Progress")
+                for y in wordOfGame:
+                    if (y in correctGuess):
+                        print(y, end=" ")
+                    else:
+                        print("_", end=" ")
+                print("\n\nSorry "+guessletter+" is not present in the word.")
                 print(str(nbTries-i) + " lives left.")
 
         if(i == nbTries):
