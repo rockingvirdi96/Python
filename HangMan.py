@@ -56,7 +56,7 @@ while(play):
                         print(y, end=" ")
                     else:
                         print("_", end=" ")
-                print("\n\nSorry "+guessletter+" is not present in the word.")
+                print("\nSorry "+guessletter+" is not present in the word.")
                 print(str(nbTries-i) + " lives left.")
 
         if(i == nbTries):
