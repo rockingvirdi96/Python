@@ -1,28 +1,29 @@
 import random
 from collections import OrderedDict
-myListOfWords = ['pythonp', 'scripting', 'prefontaine']
-guess = []
-correctGuess = []
+myListOfWords = ['sonofsatyamurthy', 'avengers', 'prefontaine', 'pandeyji',
+                 'happydon', 'rohanbasha', 'satnamwaheguru', 'eelueelu', 'canada']
 play = True
 
 while(play):
+    guess = []
+    correctGuess = []
     print("-------HANGMAN----------")
     print("1. Play Hangman.")
     print("2. Quit")
+    print("Entre ton choix:", end="")
     choice = int(input())
-    i = 0
-    z = 0
     if (choice == 1):
-        randomQuiz = random.randint(0, 2)
+        randomQuiz = random.randint(0, 8)
         wordOfGame = myListOfWords[randomQuiz]
         xtra = list(OrderedDict.fromkeys(wordOfGame))
-
-        print(len(xtra))
-        print("Remember you only got "+str(int(len(wordOfGame)/2))+" tries..")
+        i = 0
+        nbTries = int((len(wordOfGame)+2)/2)
+        print(nbTries)
+        print("Remember you only got "+str(nbTries)+" tries..")
         print("Your Quiz is :")
         for x in range(0, len(wordOfGame)):
             print("_ ", end="")
-        while(i < int(len(wordOfGame)/2)):
+        while(i < nbTries):
             isnotchar = True
             while(isnotchar):
                 print("\nEnter your guessed letter:")
@@ -44,15 +45,16 @@ while(play):
                     else:
                         print("_", end=" ")
                 if(len(correctGuess) == len(xtra)):
-                    print("\nYou win the game.")
+                    print("\n\n- =\--------WINNER---------/= -\n\n")
                     break
                 print("\nCooool now the next one..")
             else:
                 i = i+1
                 print("Sorry "+guessletter+" is not present in the word.")
+                print(str(nbTries-i) + " lives left.")
 
-        if(i == int(len(wordOfGame)/2)):
-            print("You lost the game")
+        if(i == nbTries):
+            print("\n\n--\You lost the game/--\n\n")
 
     if (choice == 2):
         print("Merci de jouer au jeu")
